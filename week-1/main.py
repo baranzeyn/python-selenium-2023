@@ -31,9 +31,10 @@ bool=bir durumun gerçekleşme eya doğruluk durumuna göre 2 değer alır.True/
 NoneType=değeri bulunmayan değişkenlerin veri tipidir.
 """
 #şartlandırma durumuna örnek olarak ilerleme durumunu sorgulayan soruya bağlı olarak ilerleme oranının artması/değişemesi
-status=50
+#ilerleme durmu inr bir değere örnek verilebilir.Tamamlanma durumu da bool değere.
+status=50#ilerleme miktarı
 progress=input("bölümü bitirdiniz mi?\nBitirdiyseniz evet\nbitirmediyseniz hayır yazınız:")
-isDone=progress.lower()=="evet"
+isDone=progress.lower()=="evet"#tamamlanma durumu
 if isDone:
     status+=10
     print("Bölümü bitirdiniz.İlerleme puanınız {}".format(status))
