@@ -18,19 +18,19 @@ bu veri tipinin sadece değerleri okunabilir değerler üzerinde bir oynama yap�
 
 range=belli bir aralık verildikten sonra o yere kadarlık kısmı bir liste olarak oluşturur.
 
-dict=belli keyler ve bu keylerin tuttuğu değerlerden oluşan bir veri tipidir.
+dict=belli keyler ve bu keylerin tuttuğu valuelardan oluşan bir veri tipidir.
 listeden farkı listelerde elemana index ile erişilirken dictte key değeri ile erişilmesidir.
 
 set=matematikteki kümelere benzer aynı değerde ve veri tipinde değeri istediğiniz kadar eklemeye çalışın
- sadece bir tanesini gösterir.sırasızdır(indexle çalışan methodlar burada istenilen işlemleri doğru yapmaz
-  çünkü elemanları indexlemez.) elemanları tek tek ekleme çıkarma yapabilir.
+ sadece bir tanesini gösterir.sırasızdır(indexle çalışan metotlar burada istenilen işlemleri doğru yapmaz
+  çünkü elemanları indexlemez.) elemanları tek tek ekleme/çıkarma yapabilir.
 
 
 bool=bir durumun gerçekleşme eya doğruluk durumuna göre 2 değer alır.True/ False
 
 NoneType=değeri bulunmayan değişkenlerin veri tipidir.
 """
-#şartlandırma dururmuna örnek olarak ilerlemedeki soruya bağlı olarak ilermene oranının artması
+#şartlandırma durumuna örnek olarak ilerleme durumunu sorgulayan soruya bağlı olarak ilerleme oranının artması/değişemesi
 status=50
 progress=input("bölümü bitirdiniz mi?\nBitirdiyseniz evet\nbitirmediyseniz hayır yazınız:")
 isDone=progress.lower()=="evet"
