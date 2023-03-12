@@ -28,9 +28,10 @@ def exit():
 
     :return tüm listeyi bastırır ve sistemden çıkış yapar:
     """
+    print("****All Students****)
     for i in names:
         print(i)
-    print("çıkış yapılıyor...")
+    print("logging out...")
     exit(0)
 
 
@@ -39,7 +40,7 @@ def learnSchoolNumber():
 
     :return öğrencinin okul numarasını verir:
     """
-    name = input("öğrencinin adını ve soyadını giriniz:")
+    name = input("please enter student's name and surname:")
     name = name.lower()  # kontrol etmeyi kolaylaştırdığı için bu şekilde yaptım
     # bu kısımda kod tekrarı olmaması için control fonksiyonunu tanımladım
     # isHave=False
@@ -52,7 +53,7 @@ def learnSchoolNumber():
     if control(names, name):
         print(names.index(name))
     else:
-        print("böyle bir öğrenci bulunamadı")
+        print("student isn't exist")
 
 
 def register():
@@ -60,7 +61,7 @@ def register():
 
     :return öğrenciyi sisteme kaydeder:
     """
-    name = input("öğrencinin adını ve soyadını giriniz:")
+    name = input("please enter student's name and surname:")
     names.append(name.lower())
     for i in names:
         count = 0
@@ -69,10 +70,10 @@ def register():
                 count += 1
 
     if count >= 2:
-        print("öğrenci sistemde kayıtlıdır")
+        print("student already registered")
         names.remove(j)
     else:
-        print("öğrenci sisteme eklenmiştir.")
+        print("registered.")
 
 
 def delete():
@@ -81,7 +82,7 @@ def delete():
     :return öğrencinin kaydını siler:
     """
     if len(names) != 0:
-        select = input("Silinecek elemanı giriniz:")
+        select = input("enter the name of the student to be deleted ")
         select = select.lower()
         # bu kısımda kod tekrarı olmaması için control fonksiyonunu tanımladım
         # aynı işlemler sadece parametreleri farklılık gösteriyor
@@ -93,13 +94,13 @@ def delete():
         #         continue
         if control(names, select):
             names.remove(select)
-            print("seçilen eleman silindi")
+            print("student deleted")
             print(names)
         else:
-            print("Seçili eleman listede bulunmamaktadır...")
+            print("student doesn't exist")
 
     else:
-        print("Listede eleman bulunmamaktadır")
+        print("no registered students ")
 
 
 def control(list, value):
@@ -120,8 +121,7 @@ def control(list, value):
 
 names = []
 while True:
-    choice = int(input(
-        "Yapmak istediğiniz işlemi seçiniz:\n1-Öğrenci ekleme\n2-Öğrenci silme\n3-Öğrencinin okul numarasını öğren\n4-Sistemden çıkış\n:"))
+    choice = int(input("Please make a dicision:\n1-Register\n2-Remove\n3-Learn school number\n4-Exit\n:"))
     match choice:
         case 1:
             register()
