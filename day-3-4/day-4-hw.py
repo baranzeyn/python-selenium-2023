@@ -11,17 +11,15 @@ class TestSauce:
         sleep(2)
 
     def login(self, username, passw):
-        self.driver.refresh()
+        username_input = self.driver.find_element(By.ID, "user-name")  # username inputunu seçtin
+        passw_input = self.driver.find_element(By.ID, "password")  # passw inputunu seçtin
         sleep(2)
-        username_input = self.driver.find_element(By.ID, "user-name")  # username inputunu seç
-        passw_input = self.driver.find_element(By.ID, "password")  # passw inputunu seç
-        sleep(2)
-        
-        username_input.send_keys(username)#inputları gönder
-        passw_input.send_keys(passw)#inputları gönder
+        # blank test vakti
+        username_input.send_keys(username)
+        passw_input.send_keys(passw)
         sleep(2)
 
-        login_btn = self.driver.find_element(By.ID, "login-button")  # login butonunu seç
+        login_btn = self.driver.find_element(By.ID, "login-button")  # login butonunu seçtin
         sleep(2)
 
         login_btn.click()
@@ -33,11 +31,11 @@ class TestSauce:
         Kullanıcı adı ve şifre alanları boş geçildiğinde uyarı mesajı olarak
          "Epic sadface: Username is required" gösterilmelidir.
         """
+        self.driver.refresh()
+        sleep(2)
         tester.login("", "")
-        
         error_msg = self.driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[1]/div/div/form/div[3]/h3")
         sleep(3)
-        
         result = error_msg.text == "Epic sadface: Username is required"  # doğruluk durumu kontrolü
         if result:
             print("test 1 passed")
@@ -49,6 +47,9 @@ class TestSauce:
     Daha sonra aşağıda çıkan uyarı mesajının kapatma butonuna tıklandığında bu "X" ikonları kaybolmalıdır.
     (Tek test casede işleyiniz)
         """
+        self.driver.refresh()
+        sleep(2)
+
         tester.login("", "")
 
         error_msg = self.driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[1]/div/div/form/div[3]/h3")
@@ -80,6 +81,8 @@ class TestSauce:
         Kullanıcı adı "locked_out_user" şifre alanı "secret_sauce" gönderildiğinde
          "Epic sadface: Sorry, this user has been locked out." mesajı gösterilmelidir.
         """
+        self.driver.refresh()
+        sleep(2)
 
         tester.login("locked_out_user", "secret_sauce")
 
@@ -97,6 +100,8 @@ class TestSauce:
         Sadece şifre alanı boş geçildiğinde uyarı mesajı olarak
         "Epic sadface: Password is required" gösterilmelidir.
         """
+        self.driver.refresh()
+        sleep(2)
 
         tester.login("locked_out_user", "")
 
@@ -115,16 +120,13 @@ class TestSauce:
         Kullanıcı adı "standard_user" şifre "secret_sauce" gönderildiğinde kullanıcı
         "/inventory.html" sayfasına gönderilmelidir.
         """
-     
-        tester.login("standard_user", "secret_sauce")
+        self.driver.refresh()
+        sleep(2)
 
-        current_url = self.driver.current_url.split('/')
-        for i in current_url:
-            if i == "inventory.html":
-                result = True
-                break
-            else:
-                result = False
+        tester.login("standard_user", "secret_sauce")
+        current_url = self.driver.current_url
+        result=current_url=="https://www.saucedemo.com/inventory.html"
+        
         if result:
             print("test 5 passed")
         else:
@@ -137,13 +139,10 @@ class TestSauce:
         self.driver.get("https://www.saucedemo.com/")
 
         tester.login("standard_user", "secret_sauce")
-        
         self.driver.get("https://www.saucedemo.com/inventory.html")
         sleep(5)
-        
         list_of_products = self.driver.find_elements(By.CLASS_NAME, "inventory_item")
         sleep(2)
-        
         print(len(list_of_products))
         result = len(list_of_products) == 6
         if result:
