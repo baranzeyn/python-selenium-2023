@@ -11,6 +11,8 @@ class TestSauce:
         sleep(2)
 
     def login(self, username, passw):
+        self.driver.refresh()
+        sleep(2)
         username_input = self.driver.find_element(By.ID, "user-name")  # username inputunu seç
         passw_input = self.driver.find_element(By.ID, "password")  # passw inputunu seç
         sleep(2)
@@ -31,9 +33,6 @@ class TestSauce:
         Kullanıcı adı ve şifre alanları boş geçildiğinde uyarı mesajı olarak
          "Epic sadface: Username is required" gösterilmelidir.
         """
-        self.driver.refresh()
-        sleep(2)
-        
         tester.login("", "")
         
         error_msg = self.driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[1]/div/div/form/div[3]/h3")
@@ -50,9 +49,6 @@ class TestSauce:
     Daha sonra aşağıda çıkan uyarı mesajının kapatma butonuna tıklandığında bu "X" ikonları kaybolmalıdır.
     (Tek test casede işleyiniz)
         """
-        self.driver.refresh()
-        sleep(2)
-
         tester.login("", "")
 
         error_msg = self.driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[1]/div/div/form/div[3]/h3")
@@ -84,8 +80,6 @@ class TestSauce:
         Kullanıcı adı "locked_out_user" şifre alanı "secret_sauce" gönderildiğinde
          "Epic sadface: Sorry, this user has been locked out." mesajı gösterilmelidir.
         """
-        self.driver.refresh()
-        sleep(2)
 
         tester.login("locked_out_user", "secret_sauce")
 
@@ -103,8 +97,6 @@ class TestSauce:
         Sadece şifre alanı boş geçildiğinde uyarı mesajı olarak
         "Epic sadface: Password is required" gösterilmelidir.
         """
-        self.driver.refresh()
-        sleep(2)
 
         tester.login("locked_out_user", "")
 
@@ -123,9 +115,7 @@ class TestSauce:
         Kullanıcı adı "standard_user" şifre "secret_sauce" gönderildiğinde kullanıcı
         "/inventory.html" sayfasına gönderilmelidir.
         """
-        self.driver.refresh()
-        sleep(2)
-
+     
         tester.login("standard_user", "secret_sauce")
 
         current_url = self.driver.current_url.split('/')
@@ -147,6 +137,7 @@ class TestSauce:
         self.driver.get("https://www.saucedemo.com/")
 
         tester.login("standard_user", "secret_sauce")
+        
         self.driver.get("https://www.saucedemo.com/inventory.html")
         sleep(5)
         
