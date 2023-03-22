@@ -11,15 +11,15 @@ class TestSauce:
         sleep(2)
 
     def login(self, username, passw):
-        username_input = self.driver.find_element(By.ID, "user-name")  # username inputunu seçtin
-        passw_input = self.driver.find_element(By.ID, "password")  # passw inputunu seçtin
+        username_input = self.driver.find_element(By.ID, "user-name")  # username inputunu seç
+        passw_input = self.driver.find_element(By.ID, "password")  # passw inputunu seç
         sleep(2)
-        # blank test vakti
-        username_input.send_keys(username)
-        passw_input.send_keys(passw)
+        
+        username_input.send_keys(username)#inputları gönder
+        passw_input.send_keys(passw)#inputları gönder
         sleep(2)
 
-        login_btn = self.driver.find_element(By.ID, "login-button")  # login butonunu seçtin
+        login_btn = self.driver.find_element(By.ID, "login-button")  # login butonunu seç
         sleep(2)
 
         login_btn.click()
@@ -33,9 +33,12 @@ class TestSauce:
         """
         self.driver.refresh()
         sleep(2)
+        
         tester.login("", "")
+        
         error_msg = self.driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[1]/div/div/form/div[3]/h3")
         sleep(3)
+        
         result = error_msg.text == "Epic sadface: Username is required"  # doğruluk durumu kontrolü
         if result:
             print("test 1 passed")
@@ -146,8 +149,10 @@ class TestSauce:
         tester.login("standard_user", "secret_sauce")
         self.driver.get("https://www.saucedemo.com/inventory.html")
         sleep(5)
+        
         list_of_products = self.driver.find_elements(By.CLASS_NAME, "inventory_item")
         sleep(2)
+        
         print(len(list_of_products))
         result = len(list_of_products) == 6
         if result:
