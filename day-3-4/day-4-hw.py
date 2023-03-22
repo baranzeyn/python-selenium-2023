@@ -65,8 +65,8 @@ class TestSauce:
             sleep(2)
 
             try:
-                error_msg_x = self.driver.find_element(By.XPATH,
-                                                       "/html/body/div/div/div[2]/div[1]/div/div/form/div[3]/h3/button")
+                username_x = self.driver.find_element(By.XPATH,"/html/body/div/div/div[2]/div[1]/div/div/form/div[1]/svg")
+                passw_x=self.driver.find_element(By.XPATH,"/html/body/div/div/div[2]/div[1]/div/div/form/div[2]/svg")
                 sleep(2)
             except:
                 print("test 2 passed")
